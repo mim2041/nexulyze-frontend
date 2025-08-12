@@ -1,54 +1,71 @@
-import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+"use client";
+import React, { useState } from "react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import ActivityForm from "./ActivityForm";
+import notification from "../assets/images/notification.svg";
+import user from "../assets/images/user.svg";
+import arrow from "../assets/images/arrow.svg";
+import Image from "next/image";
+import Sidebar from "@/app/Sidebar";
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-  {
-    variants: {
-      variant: {
-        default: "text-white bg-[#10715A] shadow hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary: "text-white bg-[#10715A] shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-);
+export default function Page() {
+  const [open, setOpen] = useState(false);
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
+  return (
+    <div className="min-h-screen flex">
+      <Sidebar />
+      <main className="flex-1 ml-56 p-12">
+        <header className="flex items-center justify-between mb-8">
+          <h1 className="text-[24px] font-semibold text-[#124547]">Bookings</h1>
+          <div className="flex items-center gap-6">
+            <Image
+              src={notification}
+              alt="Notification"
+              className="text-blue-600 text-xl"
+            />
+            <div className="flex items-center gap-4 border border-[#E7E8E9] py-2 px-3 rounded-xl">
+              <Image src={user} alt="User" />
+              <div>
+                <div className="text-sm font-medium text-gray-900">
+                  User Name
+                </div>
+                <div className="text-xs text-gray-500">User Role</div>
+              </div>
+              <Image src={arrow} alt="Arrow" className="ml-6" />
+            </div>
+          </div>
+        </header>
+
+        <section className="bg-white rounded-lg py-8 text-center text-gray-500">
+          <div className="flex items-end justify-end">
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <Button className="bg-[#10715A] hover:bg-[#0d5d4a] rounded-full px-6 py-2 text-base font-semibold">
+                  Create Activity
+                </Button>
+              </SheetTrigger>
+
+              <SheetContent className="w-[480px] sm:w-[480px]">
+                <SheetHeader className="pb-4">
+                  <SheetTitle className="font-bold text-xl">
+                    Create Activity
+                  </SheetTitle>
+                </SheetHeader>
+
+                <div className="mt-4">
+                  <ActivityForm onClose={() => setOpen(false)} />
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-Button.displayName = "Button";
-
-export { Button, buttonVariants };
