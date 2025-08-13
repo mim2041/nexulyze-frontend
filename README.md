@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Court Booking Application
 
-## Getting Started
+A modern, responsive court booking system built with **Next.js 14**, **TypeScript**, and **Shadcn/UI**. Features an elegant slide-over panel design with smooth animations, toggle controls, and a professional user interface for managing sports facility bookings.
 
-First, run the development server:
+## 🌟 Features
+
+### 🎨 **Design & UI**
+
+- **Modern Interface** - Clean, professional design with custom color scheme
+- **Slide-over Panel** - Smooth right-side panel with staggered animations
+
+### 🔧 **Functionality**
+
+- **Dynamic Form Management** - Add/remove players, real-time validation
+- **Toggle Controls** - Interactive switches for recurring bookings and check-in
+- **Smart Input Fields** - Number steppers, dropdown selectors, placeholder styling
+- **Form Validation** - Real-time error handling with visual feedback
+- **State Management** - Controlled components with proper React state
+
+### ⚡ **Performance**
+
+- **Fast Loading** - Next.js 14 App Router optimization
+- **Smooth Animations** - CSS transitions with staggered timing
+- **Type Safety** - Full TypeScript implementation
+- **Component Architecture** - Reusable Shadcn/UI components
+
+## 🚀 Tech Stack
+
+### **Frontend Framework**
+
+- **Next.js 14** - React framework with App Router
+- **React 18** - Latest React features with hooks
+- **TypeScript 5** - Static type checking and IntelliSense
+
+### **UI & Styling**
+
+- **Tailwind CSS 3** - Utility-first CSS framework
+- **Shadcn/UI** - High-quality, accessible React components
+- **Radix UI** - Headless component primitives
+- **Lucide React** - Beautiful icon library with 1000+ icons
+- **tailwindcss-animate** - CSS animations and transitions
+
+## 📦 Installation & Setup
+
+### **Prerequisites**
+
+### **1. Clone Repository**
+
+```bash
+git clone https://github.com/mim2041/nexulyze-frontend
+cd nexulyze-frontend
+```
+
+### **2. Install Dependencies**
+
+```bash
+# Using npm
+npm install
+
+# Or using yarn
+yarn install
+
+# Or using pnpm
+pnpm install
+```
+
+### **3. Install Required Packages**
+
+```bash
+npm install @radix-ui/react-slot @radix-ui/react-dialog @radix-ui/react-select @radix-ui/react-checkbox @radix-ui/react-label class-variance-authority clsx tailwind-merge lucide-react tailwindcss-animate
+```
+
+### **4. Run Development Server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Server starts at http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **5. Build for Production**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Available Scripts**
 
-## Learn More
+```bash
+npm run dev         # Start development server with hot reload
+npm run build       # Build optimized production bundle
+npm run start       # Start production server
+npm run lint        # Run ESLint for code quality
+npm run type-check  # Run TypeScript compiler check
 
-To learn more about Next.js, take a look at the following resources:
+## 🌐 Demo & Links
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Live Link: [Coming Soon](#)
+```
