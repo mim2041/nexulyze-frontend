@@ -95,5 +95,5 @@ npm run type-check  # Run TypeScript compiler check
 
 ## 🌐 Demo & Links
 
-- Live Link: [Coming Soon](#)
+- Live Link: https://nexulyze-frontend.vercel.app/
 ```
