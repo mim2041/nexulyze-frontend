@@ -1,71 +1,52 @@
 "use client";
-import React, { useState } from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import ActivityForm from "./ActivityForm";
-import notification from "../assets/images/notification.svg";
-import user from "../assets/images/user.svg";
-import arrow from "../assets/images/arrow.svg";
-import Image from "next/image";
-import Sidebar from "@/app/Sidebar";
 
-export default function Page() {
-  const [open, setOpen] = useState(false);
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-  return (
-    <div className="min-h-screen flex">
-      <Sidebar />
-      <main className="flex-1 ml-56 p-12">
-        <header className="flex items-center justify-between mb-8">
-          <h1 className="text-[24px] font-semibold text-[#124547]">Bookings</h1>
-          <div className="flex items-center gap-6">
-            <Image
-              src={notification}
-              alt="Notification"
-              className="text-blue-600 text-xl"
-            />
-            <div className="flex items-center gap-4 border border-[#E7E8E9] py-2 px-3 rounded-xl">
-              <Image src={user} alt="User" />
-              <div>
-                <div className="text-sm font-medium text-gray-900">
-                  User Name
-                </div>
-                <div className="text-xs text-gray-500">User Role</div>
-              </div>
-              <Image src={arrow} alt="Arrow" className="ml-6" />
-            </div>
-          </div>
-        </header>
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "bg-blue-600 text-white hover:bg-blue-700",
+        destructive: "bg-red-600 text-white hover:bg-red-700",
+        outline:
+          "border border-gray-300 bg-white text-gray-900 hover:bg-gray-50",
+        secondary:
+          "bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900",
+        ghost: "hover:bg-gray-100 hover:text-gray-900",
+        link: "text-blue-600 underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
 
-        <section className="bg-white rounded-lg py-8 text-center text-gray-500">
-          <div className="flex items-end justify-end">
-            <Sheet open={open} onOpenChange={setOpen}>
-              <SheetTrigger asChild>
-                <Button className="bg-[#10715A] hover:bg-[#0d5d4a] rounded-full px-6 py-2 text-base font-semibold">
-                  Create Activity
-                </Button>
-              </SheetTrigger>
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {}
 
-              <SheetContent className="w-[480px] sm:w-[480px]">
-                <SheetHeader className="pb-4">
-                  <SheetTitle className="font-bold text-xl">
-                    Create Activity
-                  </SheetTitle>
-                </SheetHeader>
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, ...props }, ref) => {
+    return (
+      <button
+        className={cn(buttonVariants({ variant, size }), className)}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Button.displayName = "Button";
 
-                <div className="mt-4">
-                  <ActivityForm onClose={() => setOpen(false)} />
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </section>
-      </main>
-    </div>
-  );
-}
+export { Button, buttonVariants };
